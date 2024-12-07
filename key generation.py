@@ -32,3 +32,17 @@ def find_primitive_root(p):
             return g
 
     return None  # Return None if no primitive root is found
+
+def generate_keys():
+    p = 9973  # Choose a large prime number (p)
+    g = find_primitive_root(p) # find the primitive root(g) of p
+    x = random.randint(1, p - 2)  # Randomly select the private key (x) such that 1 ≤ x ≤ p−2
+    h = h = pow(g, x, p) #Compute the public key component (h) = g^x (mod p)
+    public_key = (p, g, h)
+    private_key = x
+
+    return public_key, private_key
+
+public_key, private_key = generate_keys()
+print(f"Public Key: {public_key}")
+print(f"Private Key: {private_key}")
